@@ -72,12 +72,21 @@ int main(int argc, char const *argv[])
 	if(myServer.showServerPort() < 0) return -1;
 	if(myServer.listenToNewClientConnexion() < 0) return -1;
 
-	std::cout << "File Transfer Server started. Ready to send file: " << fileToSend << "\n";
+	std::cout << "========================================\n";
+	std::cout << "Multi-Client File Transfer Server Started\n";
+	std::cout << "========================================\n";
+	std::cout << "File to send: " << fileToSend << "\n";
+	std::cout << "Max connections: " << maxConnexion << "\n";
+	std::cout << "Waiting for clients to connect...\n";
+	std::cout << "========================================\n";
 
+	int clientCount = 0;
 	while (true)
 	{
 		if(myServer.acceptToMakeConnexionWithClient() < 0) return -1;
-		za::MyThread *myThread = new za::MyThread(new za::ProcessFileTransfer(), myServer);
+		clientCount++;
+		std::cout << "\n[Client #" << clientCount << "] Connected! Spawning thread to handle file transfer...\n";
+		za::MyThread *myThread = new za::MyThread(new za::ProcessFileTransfer(fileToSend), myServer);
 		myThread->createMyThread();
 	}
 	

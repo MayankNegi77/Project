@@ -34,13 +34,15 @@ public:
 	* Data Memeber Declaration
 	* ============================================================================
 	*/
-	//none
+	std::string filePath_;
 
 
 	/* ============================================================================
 	* Member Function Declaration
 	* ============================================================================
 	*/
+	ProcessFileTransfer();
+	ProcessFileTransfer(const std::string& filePath);
 	void process(za::MyServer _serverProcessingAcceptedConnexion_);
 
 };

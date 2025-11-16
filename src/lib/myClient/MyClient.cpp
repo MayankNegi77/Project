@@ -115,6 +115,7 @@ int MyClient::receiveResponseFromServer()
 			<<"[ERROR]["<<strerror(errno)<<"]["<<returnValue<<"]\n";  
 
      }
+	 else
 	 {
 		 BOOST_LOG_SEV(log, report) << "Response from a server\n";
 		 BOOST_LOG_SEV(log, report) << buffer << "\n";
