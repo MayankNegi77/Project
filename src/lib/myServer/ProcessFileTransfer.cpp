@@ -3,13 +3,16 @@
 
 namespace za{
 
-// Default constructor
-ProcessFileTransfer::ProcessFileTransfer() : filePath_("./test_file.txt")
+ProcessFileTransfer::ProcessFileTransfer() : filePath_("./test_file.txt"), clientIP_("unknown"), clientPort_(0)
 {
 }
 
-// Constructor with file path
-ProcessFileTransfer::ProcessFileTransfer(const std::string& filePath) : filePath_(filePath)
+ProcessFileTransfer::ProcessFileTransfer(const std::string& filePath) : filePath_(filePath), clientIP_("unknown"), clientPort_(0)
+{
+}
+
+ProcessFileTransfer::ProcessFileTransfer(const std::string& filePath, const std::string& clientIP, unsigned short clientPort) 
+	: filePath_(filePath), clientIP_(clientIP), clientPort_(clientPort)
 {
 }
 
@@ -20,34 +23,30 @@ void ProcessFileTransfer::process(za::MyServer _serverProcessingAcceptedConnexio
 
 	while(flag)
 	{
-		// Read client request (could be a file request command)
 		if(_serverProcessingAcceptedConnexion_.readIncomingMessageFromClient() >= 0)
 		{
 			transferCount++;
-			// Send the file specified in constructor
 			if(_serverProcessingAcceptedConnexion_.sendFileToClient(filePath_) >= 0)
 			{
-				// Message must be exactly 18 bytes (protocol requirement)
 				_serverProcessingAcceptedConnexion_.sendResponseToClient("file_sent_ok      ", 200);
-				std::cout << "[Transfer #" << transferCount << "] File sent successfully to client\n";
+				std::cout << "[" << clientIP_ << ":" << clientPort_ << "] Transfer #" << transferCount 
+				          << " - File sent successfully\n";
 			}
 			else
 			{
-				// Message must be exactly 18 bytes (protocol requirement)
 				_serverProcessingAcceptedConnexion_.sendResponseToClient("file_error        ", 400);
-				std::cout << "[Transfer #" << transferCount << "] Failed to send file to client\n";
+				std::cout << "[" << clientIP_ << ":" << clientPort_ << "] Transfer #" << transferCount 
+				          << " - Failed to send file\n";
 			}
 			
-			// Note: Client can request multiple files in same connection
-			// Remove or adjust sleep if you want faster consecutive transfers
-			usleep(100000); // Wait 0.1 seconds before ready for next transfer
+			usleep(100000);
 		} 
 		else 
 		{
-			// Message must be exactly 18 bytes (protocol requirement)
 			_serverProcessingAcceptedConnexion_.sendResponseToClient("connection_closed ", 400);		
 			flag = false;
-			std::cout << "[Client Disconnected] Total transfers: " << transferCount << "\n";
+			std::cout << "[" << clientIP_ << ":" << clientPort_ << "] Disconnected - Total transfers: " 
+			          << transferCount << "\n";
 		}
 	}
 }

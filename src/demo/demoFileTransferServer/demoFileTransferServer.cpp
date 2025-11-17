@@ -30,7 +30,6 @@ int main(int argc, char const *argv[])
 	unsigned short localPort;
 	unsigned short maxConnexion;
 	
-	// Command parser
 	try 
 	{
 		po::options_description desc("Allowed options");
@@ -85,8 +84,21 @@ int main(int argc, char const *argv[])
 	{
 		if(myServer.acceptToMakeConnexionWithClient() < 0) return -1;
 		clientCount++;
-		std::cout << "\n[Client #" << clientCount << "] Connected! Spawning thread to handle file transfer...\n";
-		za::MyThread *myThread = new za::MyThread(new za::ProcessFileTransfer(fileToSend), myServer);
+		
+		std::string clientIP = myServer.getClientIPAddress();
+		unsigned short clientPort = myServer.getClientPortNumber();
+		
+		std::cout << "\n========================================\n";
+		std::cout << "[Client #" << clientCount << "] Connected!\n";
+		std::cout << "  IP Address: " << clientIP << "\n";
+		std::cout << "  Port: " << clientPort << "\n";
+		std::cout << "  Spawning thread to handle file transfer...\n";
+		std::cout << "========================================\n";
+		
+		za::MyThread *myThread = new za::MyThread(
+			new za::ProcessFileTransfer(fileToSend, clientIP, clientPort), 
+			myServer
+		);
 		myThread->createMyThread();
 	}
 	

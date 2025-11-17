@@ -1,4 +1,0 @@
-Hello from Multi-Client File Transfer Server!
-This file is being sent to multiple clients simultaneously.
-Each client receives an independent copy through its own thread.
-Test successful!

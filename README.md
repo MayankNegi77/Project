@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [![LinkedIn][linkedin-shield]][linkedin-url]
 <!--
 [![Contributors][contributors-shield]][contributors-url]
@@ -395,3 +396,6 @@ Project Link: [https://github.com/zoumson/Multi-ClientServer](https://github.com
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/othneildrew
 [product-screenshot]: images/screenshot.png
+=======
+# Project
+>>>>>>> 978c7b6cee0fe318417ab7def8e6002377d68894

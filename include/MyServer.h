@@ -116,6 +116,9 @@ public:
 	std::string getCurrentTime();
 	int sendFileToClient(const std::string& filePath);
 	int sendFileToClient(const char* filePath);
+	
+	const char* getClientIPAddress() const { return clientIPv4; }
+	unsigned short getClientPortNumber() const { return clientPortNumber; }
 
 };
 }

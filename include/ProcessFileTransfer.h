@@ -35,6 +35,8 @@ public:
 	* ============================================================================
 	*/
 	std::string filePath_;
+	std::string clientIP_;
+	unsigned short clientPort_;
 
 
 	/* ============================================================================
@@ -43,6 +45,7 @@ public:
 	*/
 	ProcessFileTransfer();
 	ProcessFileTransfer(const std::string& filePath);
+	ProcessFileTransfer(const std::string& filePath, const std::string& clientIP, unsigned short clientPort);
 	void process(za::MyServer _serverProcessingAcceptedConnexion_);
 
 };
