@@ -3,13 +3,13 @@
 #include "MyThread.h"
 #include "Manager.h"
 #include "ProcessSingleClient.h"
-#include <iostream>     ///< cout
-#include <cstring>      ///< memset
-#include <errno.h>      ///< errno
-#include <sys/socket.h> ///< socket
-#include <netinet/in.h> ///< sockaddr_in
-#include <arpa/inet.h>  ///< getsockname
-#include <unistd.h>     ///< close
+#include <iostream>     
+#include <cstring>      
+#include <errno.h>     
+#include <sys/socket.h> 
+#include <netinet/in.h> 
+#include <arpa/inet.h>  
+#include <unistd.h>     
 #include "GetLocalAddress.h"
 #include <boost/program_options.hpp>
 #include <boost/program_options.hpp>

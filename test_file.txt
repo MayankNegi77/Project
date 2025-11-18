@@ -1,0 +1,24 @@
+Hello from Mutex-Protected Multi-Client File Transfer Server!
+
+This file is being transferred using:
+✅ Multi-threading (pthread)
+✅ Mutex synchronization (pthread_mutex)
+✅ Shared resource protection
+✅ Thread-safe statistics tracking
+✅ File access coordination
+
+Each client receives this file through a separate thread,
+and all access to shared resources is protected by mutexes
+to prevent race conditions and ensure data integrity.
+
+Mutex concepts demonstrated:
+- Critical sections
+- Shared resource protection  
+- Thread synchronization
+- Deadlock prevention
+- Resource management
+
+Transfer statistics and file access are tracked in real-time
+using mutex-protected shared data structures.
+
+Enjoy your thread-safe file transfer!

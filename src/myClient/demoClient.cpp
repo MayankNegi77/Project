@@ -32,8 +32,6 @@ int main(int argc, char *argv[])
 					"server port number.")
 				("log,l", po::value<std::string>(&logClient)->default_value("client.log")->implicit_value("client.log"), "client log path"
 				);				
-			/* Point out that all unknown values ​​should be converted to the value of the "input-file" option.
-					* Also use the command_line_parser class instead of parse_command_line */
 			po::variables_map vm;        
 			po::store(po::parse_command_line(argc, argv, desc), vm);
 			po::notify(vm);  

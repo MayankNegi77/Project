@@ -1,50 +1,6 @@
-
-/*
-* License plate detection
-* See COPYRIGHT file at the top of the source tree.
-*
-* This product includes software developed by the
-* STARGUE Project (http://www.stargue.org/).
-*
-* This program is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the STARGUE License Statement and
-* the GNU General Public License along with this program. If not,
-* see <http://www.lsstcorp.org/LegalNotices/>.
-*/
-
-/**
- * @file Manager.h
- *
- * @brief Provide logs
- *
- * @author Adama Zouma
- * 
- * @Contact: stargue49@gmail.com
- *
- */
-
-
 #ifndef MY_MANAGER_H
 #define MY_MANAGER_H
 
-
-/**
- * Implementation of a log manager
- * This log manager store each log in a specifc file
- * define by the user
- * the log file name may change and the following logs output 
- * is directed in the file name given right before
- *
- */
 #include <boost/log/attributes.hpp>
 #include <boost/log/common.hpp>
 #include <boost/log/core.hpp>
@@ -113,11 +69,8 @@ boost::shared_ptr<std::ostream> current_stream_;
     boost::shared_ptr<TextSink> sink(new TextSink(backend_));
     sink->set_formatter(
         expr::format("[%1%]<%2%>: %3%") %
-        //expr::format("[%1%]<%2%>(%3%): %4%") %
             expr::format_date_time<boost::posix_time::ptime>("TimeStamp", "%Y-%m-%d %H:%M:%S") %
-            //logging::trivial::severity %
             expr::attr < sign_severity_level > ("Severity") %
-            //expr::attr < attrs::current_thread_id::value_type > ("ThreadID") %
             expr::smessage
     );
     sink->set_filter(expr::attr<sign_severity_level>("Severity") >= warning);
