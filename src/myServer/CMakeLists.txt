@@ -4,7 +4,6 @@ set(SERVER_LIB_SOURCES
     ServerStats.cpp
     FileAccessManager.cpp
     MyThread.cpp
-    MyProcessor.cpp
     ProcessSingleClient.cpp
     GetLocalAddress.cpp
 )
