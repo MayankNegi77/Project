@@ -28,7 +28,13 @@ int MyServer::createServerForBindAndListen()
 	}
 	else
 	{
-		BOOST_LOG_SEV(log, report) << "A client socket created\n";
+		int opt = 1;
+		if (setsockopt(socketListenToConnexion, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt)) < 0)
+		{
+			BOOST_LOG_SEV(log, error)<<"Warning: Failed to set SO_REUSEADDR"
+				<<"[ERROR]["<<strerror(errno)<<"]\n";
+		}
+		BOOST_LOG_SEV(log, report) << "A server socket created\n";
 	}
 	return returnValue;
 }

@@ -76,11 +76,10 @@ int main(int argc, char const *argv[])
 
 	while (true)
 	{
-
-        if(myServer.acceptToMakeConnexionWithClient() < 0) return -1;
-
-        za::MyThread *myThread = new za::MyThread(new za::ProcessSingleClient(), myServer);
-        myThread -> createMyThread();
+		if(myServer.acceptToMakeConnexionWithClient() < 0) return -1;
+		int clientSocket = myServer.getAcceptedSocket();
+		za::MyThread *myThread = new za::MyThread(new za::ProcessSingleClient(), clientSocket);
+		myThread->createMyThread();
 	}
 	
 	return 0;

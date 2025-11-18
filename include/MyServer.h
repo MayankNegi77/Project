@@ -1,6 +1,5 @@
 #ifndef MY_SERVER_H
 #define MY_SERVER_H
-
 #include <time.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -15,9 +14,7 @@
 #include <Manager.h>
 #include "GetLocalAddress.h"
 #include <tuple>
-
 namespace src = boost::log::sources;
-
 namespace za{
 class MyServer
 {
@@ -68,7 +65,7 @@ public:
 	
 	const char* getClientIPAddress() const { return clientIPv4; }
 	unsigned short getClientPortNumber() const { return clientPortNumber; }
-
+	int getAcceptedSocket() const { return socketProcessAcceptedConnexion; }
 };
 }
 #endif 

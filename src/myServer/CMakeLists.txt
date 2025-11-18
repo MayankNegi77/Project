@@ -1,6 +1,15 @@
-file(GLOB SERVER_SOURCES *.cpp)
+set(SERVER_LIB_SOURCES
+    MyServer.cpp
+    ProcessFileTransfer.cpp
+    ServerStats.cpp
+    FileAccessManager.cpp
+    MyThread.cpp
+    MyProcessor.cpp
+    ProcessSingleClient.cpp
+    GetLocalAddress.cpp
+)
 
-add_library(myServer SHARED ${SERVER_SOURCES})
+add_library(myServer SHARED ${SERVER_LIB_SOURCES})
 target_link_libraries(myServer ${Boost_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
 
 add_executable(demoServer demoServer.cpp)

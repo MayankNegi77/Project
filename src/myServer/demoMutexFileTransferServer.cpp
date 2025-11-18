@@ -152,9 +152,10 @@ int main(int argc, char const *argv[])
 		std::cout << "  Spawning thread with MUTEX protection...\n";
 		std::cout << "========================================\n";
 		
+		int clientSocket = myServer.getAcceptedSocket();
 		za::MyThread *myThread = new za::MyThread(
 			new za::ProcessFileTransfer(fileToSend, clientIP, clientPort), 
-			myServer
+			clientSocket
 		);
 		myThread->createMyThread();
 		

@@ -117,9 +117,10 @@ int main(int argc, char const *argv[])
 		std::cout << "  Spawning thread to handle file transfer...\n";
 		std::cout << "========================================\n";
 		
+		int clientSocket = myServer.getAcceptedSocket();
 		za::MyThread *myThread = new za::MyThread(
 			new za::ProcessFileTransfer(fileToSend, clientIP, clientPort), 
-			myServer
+			clientSocket
 		);
 		myThread->createMyThread();
 	}
