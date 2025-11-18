@@ -1,6 +1,7 @@
 #ifndef PROCESS_FILE_TRANSFER_H
 #define PROCESS_FILE_TRANSFER_H
 #include "MyProcessor.h"
+#include <string>
 namespace za{
 class ProcessFileTransfer:public za::MyProcessor
 {
